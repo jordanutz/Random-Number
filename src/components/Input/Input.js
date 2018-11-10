@@ -1,13 +1,17 @@
-import React, {Component} from 'react'
+import React from 'react'
+import './Input.scss'
 
-class Input extends Component {
-  render () {
-    return (
-      <div className="Input">
-        Input
-      </div>
-    )
-  }
+const Input = (props) => {
+  console.log(props)
+  return (
+    <div className="Input">
+      <input
+        disabled={props.toggleReset}
+        value={props.input}
+        onChange={props.handleInput}
+        />
+    </div>
+  )
 }
 
 export default Input

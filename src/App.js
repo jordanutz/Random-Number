@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
+import Input from './components/Input/Input'
+import Display from './components/Display/Display'
 
 class App extends Component {
   constructor() {
@@ -74,29 +76,29 @@ class App extends Component {
 
   render() {
     console.log(this.state.randomNumber)
+    const {toggleReset, input, message, randomNumber, togglePlay, toggleSubmit} = this.state
+    const {resetInput, handleInput, displayMessage} = this
 
     return (
       <div className="Main">
         <h1>Guess a Number!</h1>
         <div className="MainInput">
-          <input disabled={this.state.toggleReset} value={this.state.input} onChange={this.handleInput} />
+          <Input
+            toggleReset={toggleReset}
+            input={input}
+            handleInput={handleInput} />
         </div>
         <div className="MainDisplay">
-          {this.state.message}
-
-          {this.state.toggleReset ?
-            <div>
-              <h2>You guessed: {this.state.input}</h2>
-              <h2>Correct number: {this.state.randomNumber} </h2>
-              <button onClick={this.resetInput}>Try Again</button>
-            </div>
-              :
-            null
-          }
-
-          {this.state.togglePlay ? <button onClick={this.resetInput}>Play Again!</button> : null}
-          {!this.state.toggleSubmit ? <button onClick={this.displayMessage}>Submit</button> : null}
-
+          <Display
+            message={message}
+            toggleReset={toggleReset}
+            input={input}
+            randomNumber={randomNumber}
+            resetInput={resetInput}
+            togglePlay={togglePlay}
+            toggleSubmit={toggleSubmit}
+            displayMessage={displayMessage}
+            />
         </div>
       </div>
     );
